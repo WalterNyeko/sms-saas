@@ -1,16 +1,19 @@
 const path = require("path");
 const webpack = require("webpack");
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
+  mode: "development",
   context: __dirname,
-  entry: "./frontend/index.js",
+  entry: {
+    main: ["./frontend/index.js"]
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
