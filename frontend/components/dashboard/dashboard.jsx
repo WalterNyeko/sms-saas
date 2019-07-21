@@ -9,6 +9,7 @@ export default class Dashboard extends React.Component {
   componentDidMount() {}
 
   render() {
+    const { user } = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
