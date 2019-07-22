@@ -1,5 +1,7 @@
 import React from "react";
 import { isHeadlessPage } from "../../util/common_util";
+import history from "../../components/helpers/history";
+import Routes from "../helpers/routes";
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -8,8 +10,8 @@ export default class Header extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.location.pathname === "/") {
-      this.props.history.push("/signin");
+    if (this.props.location.pathname === `${Routes.landing}`) {
+      history.push(`${Routes.signin}`);
     }
     this.setState({ pathname: this.props.location.pathname });
   }
@@ -24,6 +26,9 @@ export default class Header extends React.Component {
   }
 
   render() {
+    const {
+      currentUser: { token, username }
+    } = this.props.loggedInUser;
     if (isHeadlessPage(this.state.pathname)) {
       return <div />;
     } else {
@@ -33,8 +38,7 @@ export default class Header extends React.Component {
             <div className="header-body">
               <div className="row align-items-end">
                 <div className="col">
-                  <h6 className="header-pretitle">Overview</h6>
-                  <h1 className="header-title">Welcome, Sammy</h1>
+                  <h1 className="header-title">Welcome, {username}</h1>
                 </div>
               </div>
             </div>

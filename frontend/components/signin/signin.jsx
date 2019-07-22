@@ -1,21 +1,17 @@
 import React from "react";
-import { setBodyClasses } from "../../util/common_util";
+import { Link } from "react-router-dom";
+import history from "../helpers/history";
+import Routes from "../helpers/routes";
 
-export default class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {
-    setBodyClasses(this.props.location.pathname);
-  }
-
-  signIn = () => {
-    this.props.history.push("/dashboard");
-  };
-
+class SignIn extends React.Component {
   render() {
+    const {
+      signIn,
+      state: { email, password, errors, hidden },
+      isLoading,
+      showPassword,
+      handleInputChange
+    } = this.props;
     return (
       <div className="container">
         <div className="row justify-content-center">
@@ -24,52 +20,84 @@ export default class SignIn extends React.Component {
             <p className="text-muted text-center mb-5">
               Free access to our dashboard.
             </p>
-            <form>
+            <form onSubmit={signIn}>
               <div className="form-group">
-                <label>Email Address</label>
+                <label>
+                  Email Address<sup className="text-danger h5">*</sup>
+                </label>
                 <input
-                  type="email"
-                  className="form-control"
-                  placeholder="name@address.com"
+                  type="text"
+                  className={
+                    errors.email ? "error form-control" : "form-control"
+                  }
+                  placeholder="Enter email here"
+                  defaultValue={email}
+                  onChange={handleInputChange}
+                  name="email"
                 />
+                {errors.email && (
+                  <span className="text-danger">{errors.email}</span>
+                )}
               </div>
               <div className="form-group">
                 <div className="row">
                   <div className="col">
-                    <label>Password</label>
+                    <label>
+                      Password<sup className="text-danger h5">*</sup>
+                    </label>
                   </div>
                   <div className="col-auto">
-                    <a
-                      href="password-reset.html"
+                    <Link
+                      to={Routes.resetPassword}
                       className="form-text small text-muted"
                     >
                       Forgot password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="input-group input-group-merge">
                   <input
-                    type="password"
-                    className="form-control form-control-appended"
+                    type={hidden ? "password" : "text"}
+                    className={
+                      errors.password
+                        ? "error form-control form-control-appended"
+                        : "form-control form-control-appended"
+                    }
                     placeholder="Enter your password"
+                    defaultValue={password}
+                    onChange={handleInputChange}
+                    name="password"
                   />
 
                   <div className="input-group-append">
-                    <span className="input-group-text">
+                    <span
+                      className={
+                        errors.password
+                          ? "error input-group-text"
+                          : "input-group-text"
+                      }
+                      onClick={showPassword}
+                    >
                       <i className="fe fe-eye" />
                     </span>
                   </div>
                 </div>
+                {errors.password && (
+                  <span className="text-danger">{errors.password}</span>
+                )}
               </div>
-              <button
-                onClick={this.signIn}
-                className="btn btn-lg btn-block btn-primary mb-3"
-              >
-                Sign in
+
+              <button className="btn btn-primary btn-block mb-3">
+                {isLoading && (
+                  <span className="spinner-border spinner-border-sm" />
+                )}{" "}
+                {isLoading ? `Just a little bit...` : `Sign in`}
               </button>
+
               <div className="text-center">
                 <small className="text-muted text-center">
-                  Don't have an account yet? <a href="sign-up.html">Sign up</a>.
+                  Don't have an account yet?{" "}
+                  <Link to={Routes.signup}>Sign up</Link>.
                 </small>
               </div>
             </form>
@@ -79,3 +107,4 @@ export default class SignIn extends React.Component {
     );
   }
 }
+export default SignIn;
