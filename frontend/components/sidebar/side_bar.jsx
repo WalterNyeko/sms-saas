@@ -12,6 +12,10 @@ export default class SideBar extends React.Component {
   componentDidMount() {}
 
   render() {
+    console.log(this.props);
+    const {
+      messages: { availableBalance }
+    } = this.props;
     if (isHeadlessPage(this.props.location.pathname)) {
       return <div />;
     } else {
@@ -179,7 +183,13 @@ export default class SideBar extends React.Component {
                 </li>
               </ul>
               <div className="mt-auto" />
-              <h2 className="text-center text-muted">$45,990</h2>
+              <h2 className="text-center text-muted">
+                {availableBalance.currentBalance >= 0
+                  ? `${availableBalance.currency.displaySymbol} ${
+                      availableBalance.currentBalance
+                    }`
+                  : "Unknown"}
+              </h2>
               <p className="text-center small text-muted mb-3">
                 Current Balance
               </p>
