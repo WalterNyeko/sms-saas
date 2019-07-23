@@ -9,6 +9,8 @@ import Authetocation from "./authentication/authetocation_container";
 import ForgotPassword from "./signin/forgot_password_container";
 import VerifyOTP from "./signup/verifyOtp_container";
 import Routes from "../components/helpers/routes";
+import Senders from "./senders/senders_containers";
+import CreateSender from "./senders/create_sender_container";
 
 const App = () => (
   <div>
@@ -16,6 +18,8 @@ const App = () => (
     <div className="main-content">
       <Route path={Routes.landing} component={HeaderContainer} />
       <Route path={Routes.dashboard} component={DashboardContainer} />
+      <Route path={Routes.senders} component={Senders} />
+      <Route path={Routes.createSenders} component={CreateSender} />
       <Route path={Routes.authentication} exact component={Authetocation} />
     </div>
     <Route path={Routes.signin} component={SigninContainer} />

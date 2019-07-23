@@ -23,7 +23,7 @@ class SignIn extends React.Component {
             <form onSubmit={signIn}>
               <div className="form-group">
                 <label>
-                  Email Address<sup className="text-danger h5">*</sup>
+                  Email Address
                 </label>
                 <input
                   type="text"
@@ -43,7 +43,7 @@ class SignIn extends React.Component {
                 <div className="row">
                   <div className="col">
                     <label>
-                      Password<sup className="text-danger h5">*</sup>
+                      Password
                     </label>
                   </div>
                   <div className="col-auto">

@@ -11,3 +11,16 @@
 .error {
   border-color: red !important;
 }
+
+@font-face {
+  font-family: "CalibreWeb-Regular";
+  src: url("https://res.cloudinary.com/dko7n7x16/raw/upload/v1551879506/CalibreWeb-Regular_lbngyc.woff")
+    format("woff");
+}
+html {
+  font-family: CalibreWeb-Regular !important;
+}
+body {
+  margin: 0;
+  font-family: CalibreWeb-Regular !important;
+}

@@ -31,9 +31,8 @@ class verifyOtp_container extends Component {
       const countryCode = localStorage.getItem("code");
       const phone = localStorage.getItem("phone");
       const data = {
-        token,
-        country_code: countryCode,
-        phone_number: phone
+        otp: token,
+        phone: phone
       };
       const { verifyOtp } = this.props;
       await verifyOtp(data);
