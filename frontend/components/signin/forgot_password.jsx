@@ -16,10 +16,7 @@ class forgot_password extends Component {
             <h1 className="display-4 text-center mb-5">Password Reset</h1>
             <form onSubmit={resetPassword}>
               <div className="form-group">
-                <label>
-                  Email Address (The email you registered with)
-                  <sup className="text-danger h5">*</sup>
-                </label>
+                <label>Email Address (The email you registered with)</label>
                 <input
                   type="text"
                   className={
@@ -35,10 +32,7 @@ class forgot_password extends Component {
                 )}
               </div>
               <div className="form-group">
-                <label>
-                  New Password
-                  <sup className="text-danger h5">*</sup>
-                </label>
+                <label>New Password</label>
                 <input
                   type="password"
                   className={
@@ -54,10 +48,7 @@ class forgot_password extends Component {
                 )}
               </div>
               <div className="form-group">
-                <label>
-                  Confirm Password
-                  <sup className="text-danger h5">*</sup>
-                </label>
+                <label>Confirm Password</label>
                 <input
                   type="password"
                   className={

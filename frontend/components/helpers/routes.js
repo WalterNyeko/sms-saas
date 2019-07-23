@@ -5,6 +5,8 @@ const Routes = {
   dashboard: "/dashboard",
   resetPassword: "/password-reset",
   verifyToken: "/verify-token",
-  authentication: "/authentication"
+  authentication: "/authentication",
+  senders: "/senders",
+  createSenders: "/create-sender"
 };
 export default Routes;

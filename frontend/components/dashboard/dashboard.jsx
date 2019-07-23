@@ -1,4 +1,5 @@
 import React from "react";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -9,7 +10,13 @@ export default class Dashboard extends React.Component {
   componentDidMount() {}
 
   render() {
-    const { user } = this.props;
+    const {
+      isLoading,
+      recentMessages,
+      availableBalance,
+      userDetails: { total_message_sent, failed_message }
+    } = this.props;
+
     return (
       <div className="container-fluid">
         <div className="row">
@@ -21,7 +28,13 @@ export default class Dashboard extends React.Component {
                     <h6 className="card-title text-uppercase text-muted mb-2">
                       account balance
                     </h6>
-                    <span className="h2 mb-0">$24,500</span>
+                    <span className="h2 mb-0">
+                      {availableBalance.currentBalance >= 0
+                        ? `${availableBalance.currency.displaySymbol} ${
+                            availableBalance.currentBalance
+                          }`
+                        : "Unknown"}
+                    </span>
                   </div>
                   <div className="col-auto">
                     <span className="h2 fe fe-dollar-sign text-muted mb-0" />
@@ -38,10 +51,12 @@ export default class Dashboard extends React.Component {
                     <h6 className="card-title text-uppercase text-muted mb-2">
                       sent messages
                     </h6>
-                    <span className="h2 mb-0">12</span>
+                    <span className="h2 mb-0">
+                      {recentMessages ? recentMessages.length : "Unknown"}
+                    </span>
                   </div>
                   <div className="col-auto">
-                    <span className="h2 fe fe-zap text-muted mb-0" />
+                    <span className="h2 fe fe-zap  text-success mb-0" />
                   </div>
                 </div>
               </div>
@@ -58,12 +73,14 @@ export default class Dashboard extends React.Component {
 
                     <div className="row align-items-center no-gutters">
                       <div className="col-auto">
-                        <span className="h2 mr-2 mb-0">2,908</span>
+                        <span className="h2 mr-2 mb-0">
+                          {failed_message ? failed_message : "Unknown"}
+                        </span>
                       </div>
                     </div>
                   </div>
                   <div className="col-auto">
-                    <span className="h2 fe fe-zap-off text-muted mb-0" />
+                    <span className="h2 fe fe-zap-off mb-0 text-danger" />
                   </div>
                 </div>
               </div>
@@ -77,10 +94,12 @@ export default class Dashboard extends React.Component {
                     <h6 className="card-title text-uppercase text-muted mb-2">
                       Total message sent
                     </h6>
-                    <span className="h2 mb-0">45678,799</span>
+                    <span className="h2 mb-0">
+                      {total_message_sent ? total_message_sent : "Unknown"}
+                    </span>
                   </div>
                   <div className="col-auto">
-                    <span className="h2 fe fe-clock text-muted mb-0" />
+                    <span className="h2 fe fe-clock  text-primary mb-0" />
                   </div>
                 </div>
               </div>
@@ -103,27 +122,44 @@ export default class Dashboard extends React.Component {
                 </div>
               </div>
               <div className="table-responsive mb-0">
+                {isLoading && <LinearProgress />}
                 <table className="table table-sm table-nowrap card-table">
-                  <thead>
-                    <tr>
-                      <th>date</th>
-                      <th>message reference</th>
-                      <th>Status</th>
-                      <th>Cost</th>
-                      <th>sender id</th>
-                      <th>recipeint</th>
-                      <th />
-                    </tr>
-                  </thead>
+                  {!isLoading && (
+                    <thead>
+                      <tr>
+                        <th>date</th>
+                        <th>message reference</th>
+                        <th>Status</th>
+                        <th>Cost</th>
+                        <th>sender id</th>
+                        <th>recipeint</th>
+                        <th />
+                      </tr>
+                    </thead>
+                  )}
                   <tbody className="list">
-                    <tr>
-                      <td>5 July 2019</td>
-                      <td>DSFDGFHGJHKJLK34545678</td>
-                      <td>Delivered</td>
-                      <td>NGN0.02</td>
-                      <td>SLSBank</td>
-                      <td>+2348107176019</td>
-                    </tr>
+                    {!isLoading && recentMessages && recentMessages.length
+                      ? recentMessages.map(
+                          ({
+                            id,
+                            created_at,
+                            mesage_refernce,
+                            status,
+                            cost,
+                            send_id,
+                            receiver_number
+                          }) => (
+                            <tr key={id}>
+                              <td>{created_at}</td>
+                              <td>{mesage_refernce}</td>
+                              <td>{status}</td>
+                              <td>{cost}</td>
+                              <td>{send_id}</td>
+                              <td>{receiver_number}</td>
+                            </tr>
+                          )
+                        )
+                      : null}
                   </tbody>
                 </table>
               </div>

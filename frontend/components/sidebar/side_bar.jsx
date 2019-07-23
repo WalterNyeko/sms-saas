@@ -1,5 +1,7 @@
 import React from "react";
 import { isHeadlessPage } from "../../util/common_util";
+import Routes from "../helpers/routes";
+import { NavLink } from "react-router-dom";
 
 export default class SideBar extends React.Component {
   constructor(props) {
@@ -92,9 +94,9 @@ export default class SideBar extends React.Component {
               </form>
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="#sidebarDashboards">
+                  <NavLink className="nav-link" to={Routes.dashboard}>
                     <i className="fe fe-home" /> Dashboards
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
                   <a
@@ -110,14 +112,17 @@ export default class SideBar extends React.Component {
                   <div className="collapse" id="sidebarDashboards">
                     <ul className="nav nav-sm flex-column">
                       <li className="nav-item">
-                        <a href="" className="nav-link ">
+                        <NavLink
+                          to={Routes.createSenders}
+                          className="nav-link "
+                        >
                           Create Sender ID
-                        </a>
+                        </NavLink>
                       </li>
                       <li className="nav-item">
-                        <a href="" className="nav-link">
+                        <NavLink to={Routes.senders} className="nav-link">
                           All Sender ID
-                        </a>
+                        </NavLink>
                       </li>
                     </ul>
                   </div>
