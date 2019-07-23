@@ -27,7 +27,7 @@ export default class Header extends React.Component {
 
   render() {
     const {
-      currentUser: { token, username }
+      currentUser: { username }
     } = this.props.loggedInUser;
     if (isHeadlessPage(this.state.pathname)) {
       return <div />;
@@ -38,7 +38,12 @@ export default class Header extends React.Component {
             <div className="header-body">
               <div className="row align-items-end">
                 <div className="col">
-                  <h1 className="header-title">Welcome, {username}</h1>
+                  <h1 className="header-title">
+                    Welcome,{" "}
+                    {username
+                      ? username
+                      : this.props.loggedInUser.userDetails.username}
+                  </h1>
                 </div>
               </div>
             </div>

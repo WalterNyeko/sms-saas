@@ -41,9 +41,7 @@ export default class SignUp extends React.Component {
             <form onSubmit={signUp}>
               <div className="form-row">
                 <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="validationServer01">
-                    First Name<sup className="text-danger h5">*</sup>
-                  </label>
+                  <label htmlFor="validationServer01">First Name</label>
                   <input
                     type="text"
                     className={
@@ -59,9 +57,7 @@ export default class SignUp extends React.Component {
                   )}
                 </div>
                 <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="validationServer02">
-                    Last Name<sup className="text-danger h5">*</sup>
-                  </label>
+                  <label htmlFor="validationServer02">Last Name</label>
                   <input
                     type="text"
                     className={
@@ -79,9 +75,7 @@ export default class SignUp extends React.Component {
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="validationServer02">
-                  Username<sup className="text-danger h5">*</sup>
-                </label>
+                <label htmlFor="validationServer02">Username</label>
                 <input
                   type="text"
                   className={
@@ -100,9 +94,7 @@ export default class SignUp extends React.Component {
 
               <div className="form-row">
                 <div className="col-12 col-md-6 mb-3">
-                  <label>
-                    Phone Number<sup className="text-danger h5">*</sup>
-                  </label>
+                  <label>Phone Number</label>
                   <div className="input-group input-group-merge">
                     <input
                       type="text"
@@ -120,9 +112,7 @@ export default class SignUp extends React.Component {
                   </div>
                 </div>
                 <div className="col-12 col-md-6 mb-3">
-                  <label>
-                    Company Name<sup className="text-danger h5">*</sup>
-                  </label>
+                  <label>Company Name</label>
                   <div className="input-group input-group-merge">
                     <input
                       type="text"
@@ -141,9 +131,7 @@ export default class SignUp extends React.Component {
                 </div>
               </div>
               <div className="form-group">
-                <label>
-                  Email Address<sup className="text-danger h5">*</sup>
-                </label>
+                <label>Email Address</label>
                 <input
                   type="email"
                   className={
@@ -160,9 +148,7 @@ export default class SignUp extends React.Component {
               </div>
               <div className="form-row">
                 <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="validationServer01">
-                    Password<sup className="text-danger h5">*</sup>
-                  </label>
+                  <label htmlFor="validationServer01">Password</label>
                   <input
                     type="password"
                     className={
@@ -179,9 +165,7 @@ export default class SignUp extends React.Component {
                 </div>
 
                 <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="validationServer02">
-                    Confirm Password<sup className="text-danger h5">*</sup>
-                  </label>
+                  <label htmlFor="validationServer02">Confirm Password</label>
                   <input
                     type="password"
                     className={
@@ -201,9 +185,7 @@ export default class SignUp extends React.Component {
                   )}
                 </div>
                 <div className="col-12 col-md-12 mb-3">
-                  <label htmlFor="validationServer02">
-                    Select Country<sup className="text-danger h5">*</sup>
-                  </label>
+                  <label htmlFor="validationServer02">Select Country</label>
                   <PhoneCode
                     onSelect={code => setCountryCode(code)} // required
                     showFirst={["US", "IN"]}

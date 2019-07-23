@@ -9,7 +9,8 @@ import {
   VERIFICATION_IS_SUCCESSFUL,
   VERIFICATION_IS_NOT_SUCCESSFUL,
   STOP_LOADING,
-  START_LOADING
+  START_LOADING,
+  FETCH_USER_DETAILS
 } from "../../components/types/index";
 const initialState = {
   isSignUpSuccess: false,
@@ -17,7 +18,8 @@ const initialState = {
   isResetSuccessful: false,
   verificationIsSuccess: false,
   currentUser: {},
-  isLoading: false
+  isLoading: false,
+  userDetails: {}
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -75,6 +77,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload
+      };
+    case FETCH_USER_DETAILS:
+      return {
+        ...state,
+        userDetails: action.payload
       };
     default:
       return state;
